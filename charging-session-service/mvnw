@@ -1,0 +1,78 @@
+#!/bin/sh
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+# -----------------------------------------------------------------
+# Apache Maven Wrapper startup script
+# -----------------------------------------------------------------
+
+set -e
+
+# Find the project base dir — the directory containing this script.
+findBaseDir() {
+    SCRIPT="$0"
+    while [ -L "$SCRIPT" ]; do
+        ls=$(ls -ld "$SCRIPT")
+        link=$(expr "$ls" : '.*-> \(.*\)$')
+        if expr "$link" : '/.*' > /dev/null; then
+            SCRIPT="$link"
+        else
+            SCRIPT=$(dirname "$SCRIPT")/"$link"
+        fi
+    done
+    echo "$(cd "$(dirname "$SCRIPT")" && pwd)"
+}
+
+BASE_DIR=$(findBaseDir)
+MAVEN_WRAPPER_PROPERTIES="$BASE_DIR/.mvn/wrapper/maven-wrapper.properties"
+
+# Read the Maven distribution URL from wrapper properties.
+DISTRIBUTION_URL=""
+if [ -f "$MAVEN_WRAPPER_PROPERTIES" ]; then
+    DISTRIBUTION_URL=$(grep "^distributionUrl=" "$MAVEN_WRAPPER_PROPERTIES" | sed 's/distributionUrl=//')
+fi
+
+# Require Java 25 (this project targets Spring Boot 4.1.1 / Java 25).
+# Set JAVA_HOME to a Java 25 installation before running this script.
+if [ -n "$JAVA_HOME" ]; then
+    JAVA_CMD="$JAVA_HOME/bin/java"
+else
+    JAVA_CMD="java"
+fi
+
+_java_major_version() {
+    "$1" -version 2>&1 | head -1 | grep -o '"[^"]*"' | tr -d '"' | cut -d. -f1
+}
+
+_version=$(_java_major_version "$JAVA_CMD")
+if [ "$_version" != "25" ]; then
+    echo "ERROR: Java 25 is required (found Java $_version)." >&2
+    echo "       Set JAVA_HOME to a Java 25 installation and re-run." >&2
+    exit 1
+fi
+
+# Determine MAVEN_HOME: prefer M2_HOME, then look for installed Maven.
+if [ -n "$M2_HOME" ] && [ -f "$M2_HOME/bin/mvn" ]; then
+    MAVEN_CMD="$M2_HOME/bin/mvn"
+elif command -v mvn > /dev/null 2>&1; then
+    MAVEN_CMD="mvn"
+else
+    echo "Error: Maven not found. Please install Maven 3.9+ or set M2_HOME." >&2
+    exit 1
+fi
+
+exec "$MAVEN_CMD" "$@"

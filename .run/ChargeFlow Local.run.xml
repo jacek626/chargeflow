@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ChargeFlow Local" type="CompoundRunConfigurationType">
+    <toRun name="charging-session-service" type="SpringBootApplicationConfigurationType" />
+    <toRun name="notification-service" type="SpringBootApplicationConfigurationType" />
+  </configuration>
+</component>

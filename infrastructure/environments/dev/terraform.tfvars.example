@@ -1,0 +1,17 @@
+environment  = "dev"
+aws_region   = "eu-central-1"
+github_repo  = "your-org/chargeflow"   # update before applying
+
+# Container images — set after ECR repos are created and images pushed (CF-029)
+# charging_session_image = "123456789.dkr.ecr.eu-central-1.amazonaws.com/chargeflow-dev-charging-session-service:latest"
+# notification_image     = "123456789.dkr.ecr.eu-central-1.amazonaws.com/chargeflow-dev-notification-service:latest"
+
+# ECS task sizing (defaults are fine for dev)
+# ecs_task_cpu      = 256
+# ecs_task_memory   = 512
+# ecs_desired_count = 1
+
+# TLS / custom domain (optional; omit for ALB HTTP + CloudFront default cert)
+# acm_certificate_arn          = "arn:aws:acm:eu-central-1:123456789:certificate/..."
+# frontend_acm_certificate_arn = "arn:aws:acm:us-east-1:123456789:certificate/..."   # must be us-east-1
+# frontend_domain_aliases      = ["app.chargeflow.dev"]

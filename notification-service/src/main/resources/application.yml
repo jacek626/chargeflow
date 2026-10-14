@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: notification-service
+
+  # Jackson 3.x (Spring Boot 4.x): WRITE_DATES_AS_TIMESTAMPS moved to DateTimeFeature
+  jackson:
+    datatype:
+      datetime:
+        write-dates-as-timestamps: false
+
+chargeflow:
+  aws:
+    region: ${AWS_REGION:eu-central-1}
+    endpoint-url: ${AWS_ENDPOINT_URL:}
+  dynamodb:
+    table-name: ${DYNAMODB_NOTIFICATIONS_TABLE:chargeflow-local-notifications}
+  ses:
+    enabled: ${SES_ENABLED:false}
+    from-address: ${SES_FROM_ADDRESS:noreply@chargeflow.pl}
+  sqs:
+    enabled: ${SQS_ENABLED:false}
+    queue-url: ${SQS_QUEUE_URL:}
+    max-messages: 10
+    visibility-timeout-seconds: 30
+    wait-time-seconds: 20
+    poll-interval-ms: 100
+  sns:
+    enabled: ${SNS_ENABLED:false}
+    notification-topic-arn: ${SNS_NOTIFICATION_TOPIC_ARN:}
+
+logging:
+  structured:
+    format:
+      console: ecs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  tracing:
+    sampling:
+      probability: 1.0
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: notification-service
+    version: v1
+
+server:
+  port: 8081

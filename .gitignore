@@ -1,0 +1,93 @@
+# ─── IntelliJ IDEA ───────────────────────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ─── VS Code ─────────────────────────────────────────────────────────────────
+.vscode/
+*.code-workspace
+
+# ─── Maven ───────────────────────────────────────────────────────────────────
+**/target/
+*.jar
+*.war
+*.ear
+*.class
+
+# ─── Gradle (if ever added) ──────────────────────────────────────────────────
+.gradle/
+**/build/
+
+# ─── Node / npm / yarn ───────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ─── Angular ─────────────────────────────────────────────────────────────────
+**/dist/
+**/tmp/
+.angular/
+
+# ─── Python (future versions) ────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+dist/
+
+# ─── Terraform ───────────────────────────────────────────────────────────────
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.tfvars
+!*.tfvars.example
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+crash.log
+crash.*.log
+terraform.tfplan
+*.plan
+
+# ─── Environment / secrets ───────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+*credentials*
+*secret*
+
+# ─── AWS ─────────────────────────────────────────────────────────────────────
+.aws/
+
+# ─── Docker ──────────────────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ─── Logs ────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── OS files ────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ─── Test coverage ───────────────────────────────────────────────────────────
+**/coverage/
+*.lcov

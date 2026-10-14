@@ -1,0 +1,12 @@
+package pl.chargeflow.notification.event;
+
+public enum DomainEventType {
+    RESERVATION_CREATED,
+    RESERVATION_CANCELLED,
+    RESERVATION_EXPIRED,
+    CHARGING_STARTED,
+    CHARGING_COMPLETED,
+    CHARGING_FAILED,
+    NOTIFICATION_SENT,
+    NOTIFICATION_FAILED
+}

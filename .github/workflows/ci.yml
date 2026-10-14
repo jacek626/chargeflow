@@ -1,0 +1,108 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  # ─────────────────────────────────────────────
+  # charging-session-service — Java 25 / Maven
+  # ─────────────────────────────────────────────
+  test-charging-session-service:
+    name: Test — charging-session-service
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: charging-session-service
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java 25
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Run tests
+        run: ./mvnw test -B
+
+  # ─────────────────────────────────────────────
+  # notification-service — Java 25 / Maven
+  # ─────────────────────────────────────────────
+  test-notification-service:
+    name: Test — notification-service
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: notification-service
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java 25
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Run tests
+        run: ./mvnw test -B
+
+  # ─────────────────────────────────────────────
+  # frontend — Angular 21 / Node 20
+  # ─────────────────────────────────────────────
+  build-frontend:
+    name: Build — frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (production)
+        run: npx ng build --configuration=production
+
+  # ─────────────────────────────────────────────
+  # Terraform — fmt check + validate
+  # ─────────────────────────────────────────────
+  validate-terraform:
+    name: Validate — Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '~1.11'
+
+      - name: Terraform fmt check
+        run: terraform fmt -check -recursive
+        working-directory: infrastructure
+
+      - name: Terraform init — dev
+        run: terraform init -backend=false
+        working-directory: infrastructure/environments/dev
+
+      - name: Terraform validate — dev
+        run: terraform validate
+        working-directory: infrastructure/environments/dev

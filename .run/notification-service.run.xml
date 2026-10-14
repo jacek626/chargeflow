@@ -1,0 +1,20 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="notification-service" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="notification-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="pl.chargeflow.notification.NotificationServiceApplication" />
+    <envs>
+      <env name="SPRING_PROFILES_ACTIVE" value="local" />
+      <env name="AWS_REGION" value="eu-central-1" />
+      <env name="AWS_ACCESS_KEY_ID" value="test" />
+      <env name="AWS_SECRET_ACCESS_KEY" value="test" />
+      <env name="AWS_ENDPOINT_URL" value="http://localhost:4566" />
+      <env name="SQS_ENABLED" value="true" />
+      <env name="SQS_QUEUE_URL" value="http://localhost:4566/000000000000/chargeflow-local-notifications" />
+      <env name="DYNAMODB_NOTIFICATIONS_TABLE" value="chargeflow-local-notifications" />
+      <env name="SES_ENABLED" value="false" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,21 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="charging-session-service" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="charging-session-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="pl.chargeflow.session.ChargingSessionServiceApplication" />
+    <envs>
+      <env name="SPRING_PROFILES_ACTIVE" value="local" />
+      <env name="DB_URL" value="jdbc:postgresql://localhost:5432/chargeflow" />
+      <env name="DB_USERNAME" value="chargeflow" />
+      <env name="DB_PASSWORD" value="chargeflow_local" />
+      <env name="AWS_REGION" value="eu-central-1" />
+      <env name="AWS_ACCESS_KEY_ID" value="test" />
+      <env name="AWS_SECRET_ACCESS_KEY" value="test" />
+      <env name="AWS_ENDPOINT_URL" value="http://localhost:4566" />
+      <env name="SNS_ENABLED" value="true" />
+      <env name="SNS_TOPIC_ARN" value="arn:aws:sns:eu-central-1:000000000000:chargeflow-local-domain-events" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

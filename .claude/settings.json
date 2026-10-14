@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git branch*)",
+      "Bash(git checkout*)",
+      "Bash(git stash*)",
+      "Bash(ls*)",
+      "Bash(find*)",
+      "Bash(cat*)",
+      "Bash(grep*)",
+      "Bash(tree*)",
+      "Bash(mvn test*)",
+      "Bash(mvn verify*)",
+      "Bash(mvn compile*)",
+      "Bash(mvn package*)",
+      "Bash(mvn clean*)",
+      "Bash(npm test*)",
+      "Bash(npm run build*)",
+      "Bash(ng build*)",
+      "Bash(ng test*)",
+      "Bash(docker compose up*)",
+      "Bash(docker compose down*)",
+      "Bash(docker compose ps*)",
+      "Bash(docker compose logs*)",
+      "Bash(terraform fmt*)",
+      "Bash(terraform validate*)",
+      "Bash(terraform plan*)",
+      "Bash(terraform init*)"
+    ],
+    "deny": [
+      "Bash(git push*)",
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Bash(rm -rf*)",
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(aws s3 rm*)",
+      "Bash(aws ec2 terminate*)",
+      "Bash(aws ecs delete*)",
+      "Bash(aws rds delete*)",
+      "Bash(aws dynamodb delete-table*)"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    password: chargeflow_local
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Local dev: use the JWKS served by LocalDevController
+          jwk-set-uri: http://localhost:8080/dev/jwks.json
