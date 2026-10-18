@@ -1,2 +1,5 @@
+# Przykład: skopiuj jako terraform.tfvars (jest w .gitignore); Terraform wczyta go automatycznie.
+# UWAGA: prod to szkielet - te wartości na razie nic nie tworzą.
 environment  = "prod"
+# Region produkcji (Frankfurt)
 aws_region   = "eu-central-1"

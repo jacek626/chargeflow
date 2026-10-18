@@ -1,2 +1,5 @@
+# Przykład: skopiuj jako terraform.tfvars (jest w .gitignore); Terraform wczyta go automatycznie.
+# Wymagane - environment nie ma default, a start-local.sh go nie przekazuje
 environment  = "local"
+# Region emulowany przez LocalStack
 aws_region   = "eu-central-1"

@@ -1,17 +1,25 @@
+# Przykład: skopiuj jako terraform.tfvars (jest w .gitignore) i uzupełnij.
+# Terraform wczytuje terraform.tfvars automatycznie przy plan/apply.
+# Wymagane - environment nie ma default w variables.tf
 environment  = "dev"
+# Region - musi zgadzać się z regionem backendu podanym przy terraform init
 aws_region   = "eu-central-1"
+# Repozytorium dla trust policy roli OIDC (format org/repo)
 github_repo  = "your-org/chargeflow"   # update before applying
 
 # Container images — set after ECR repos are created and images pushed (CF-029)
+# Odkomentuj i wstaw URI z outputów *_repo_url; deploy.yml i tak nadpisuje je przez -var
 # charging_session_image = "123456789.dkr.ecr.eu-central-1.amazonaws.com/chargeflow-dev-charging-session-service:latest"
 # notification_image     = "123456789.dkr.ecr.eu-central-1.amazonaws.com/chargeflow-dev-notification-service:latest"
 
 # ECS task sizing (defaults are fine for dev)
+# 256 CPU / 512 MiB = najmniejszy i najtańszy rozmiar taska Fargate
 # ecs_task_cpu      = 256
 # ecs_task_memory   = 512
 # ecs_desired_count = 1
 
 # TLS / custom domain (optional; omit for ALB HTTP + CloudFront default cert)
+# Certyfikat ALB musi być w tym samym regionie co ALB (eu-central-1)
 # acm_certificate_arn          = "arn:aws:acm:eu-central-1:123456789:certificate/..."
 # frontend_acm_certificate_arn = "arn:aws:acm:us-east-1:123456789:certificate/..."   # must be us-east-1
 # frontend_domain_aliases      = ["app.chargeflow.dev"]
